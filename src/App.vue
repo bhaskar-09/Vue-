@@ -7,7 +7,7 @@
         <div class="col-sm-9">           
           <Inventory @newItemAdd="addToCart" :items="items"></Inventory>
         </div>        
-        <div class="col-sm-3 cartbar"> 
+        <div class="col-sm-3 cartbar hello class"> 
           <Cart @removeItem="removeItemCart" :items="carts"></Cart>
         </div>
       </div>
@@ -15,7 +15,7 @@
 
 
 
-  </div>
+  </div> 
 </template>
 
 <script>
