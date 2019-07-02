@@ -3,7 +3,7 @@
     <Navbar @search="search"></Navbar>
     <router-view></router-view>
      <div class="container-fluid">
-      <div class="row">
+      <div class="row"> 
         <div class="col-sm-9">           
           <Inventory @newItemAdd="addToCart" :items="items"></Inventory>
         </div>        
