@@ -15,11 +15,21 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
-    props: ["items"],
+    data(){
+        return {
+            items : []
+        }
+    },
     methods:{
         addToCartItem(item){
             this.$emit('newItemAdd',item)
+        },
+        fetchData(){
+            axios.get('http://localhost:3000/items').then(Response=>{
+                
+            })
         }
     }
 }

@@ -13,7 +13,7 @@
             <router-link :to="{path:'/'}" class="nav-link" >Features</router-link>
             </li>
             <li class="nav-item">
-            <router-link :to="{path:'/hello'}" class="nav-link">Pricing</router-link>
+            <router-link :to="{path:'/ProductDetails/1'}" class="nav-link">Pricing</router-link>
             </li>
         </ul>
          <div class="form-inline my-2 my-lg-0">
