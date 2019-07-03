@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <Navbar></Navbar>
+    <Navbar @search="search"></Navbar>
+    <router-view></router-view>
      <div class="container-fluid">
       <div class="row">
         <div class="col-sm-9">           
           <Inventory @newItemAdd="addToCart" :items="items"></Inventory>
         </div>        
-        <div class="col-sm-3"> 
-          <Cart :items="carts"></Cart>
+        <div class="col-sm-3 cartbar hiiii"> 
+          <Cart @removeItem="removeItemCart" :items="carts"></Cart>
         </div>
       </div>
     </div>
@@ -38,8 +39,22 @@ export default {
     this.items = data;
   },
   methods: {
+    search(keyword){
+      if(keyword.length>0){
+        this.items =  data.filter(
+          item => {          
+              return item.tittle.toLowerCase().indexOf(keyword.toLowerCase()) !== -1          
+          }
+        )
+      }else{
+        this.items =  data
+      }      
+    },
     addToCart(item){
       this.carts.push(item);
+    },
+    removeItemCart(index){
+      this.carts.splice(index,1);
     }
   }
 }

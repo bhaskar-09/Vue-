@@ -7,22 +7,34 @@
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <router-link :to="{path:'/'}" class="nav-link" >Home</router-link>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <router-link :to="{path:'/'}" class="nav-link" >Features</router-link>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <router-link :to="{path:'/hello'}" class="nav-link">Pricing</router-link>
             </li>
         </ul>
+         <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" @keyup="search()" v-model="keyword" type="search" placeholder="Search" aria-label="Search">
+        </div>
         </div>
     </nav>
 </template>
 
 <script>
 export default {
-
+    data(){
+        return {
+            keyword : ""
+        }
+    },
+    methods:{
+        search(){
+            this.$emit('search',this.keyword)
+        }
+    }
 }
 </script>
 
