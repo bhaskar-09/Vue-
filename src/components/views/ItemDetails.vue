@@ -6,10 +6,10 @@
     <div class="col-sm-6">
       <h4>{{ item.title }}</h4>
       <p>{{ item.description }}</p>
+      <h4 class="text-center">${{ item.price }}</h4>
       <div class="card-footer">
-        <span>$ {{ item.price }}</span> 
-        <button @click="addToCart(item)" class="btn btn-sm btn-primary float-right"> 
-          + add 
+        <button @click="addToCart(item)" class="btn btn-block btn-success">
+         Add To Cart
         </button>
       </div>
     </div>

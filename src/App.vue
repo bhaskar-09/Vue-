@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    
-    <navbar @search="search"></navbar>
+
+    <navbar></navbar>
 
     <div class="container">
       <div class="row">
@@ -9,7 +9,7 @@
           <router-view></router-view>
         </div>
         <div class="col-sm-3">
-          <cart @itemRemoved="removeItem" :items="cart"></cart>
+          <cart :items="cart"></cart>
         </div>
       </div>
     </div>
@@ -29,31 +29,23 @@ export default {
   data() {
     return {
       items: [],
-      cart: []
+      cart: [],
+      tittle : ""
     }
   },
   mounted() {
     this.items = data
   },
   methods: {
-    search(keyword) {
-      this.items = data.filter(item => {
-        return item.title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
-      })
-    },
-    addCartItem(item) {
-      this.cart.push(item)
-    },
-    removeItem(index) {
-      this.cart.splice(index, 1)
-    }
+
+
   }
 }
 </script>
 
 <style>
 .container {
-  padding-top: 10px; 
+  padding-top: 10px;
 }
 .card {
   margin: 2px;

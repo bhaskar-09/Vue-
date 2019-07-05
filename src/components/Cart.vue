@@ -1,27 +1,33 @@
 <template>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <span class="item-name">Name</span>
-      <span class="item-price float-right">Price</span>
-    </li> 
-    
-    <hr>
-      <li v-for="(item, index) in items" :key="index" class="list-group-item">
-        <span class="item-name">{{ item.title }}</span>
-        <button class="btn btn-sm btn-danger" @click="removeItem(index)">-</button>
-        <span class="item-price float-right">${{ item.price }}</span>
+  <div class="col-sm-3 cartbar">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h1 class="text-center">Cart</h1>
       </li>
-    <hr>
+      <li class="list-group-item">
+        <span class="item-name">Name</span>
+        <span class="item-price float-right">Price</span>
+      </li>
+    </ul>
+    <ul class="list-group">
+      <hr>
+        <li v-for="(item, index) in items" :key="index" class="list-group-item">
+          <span class="item-name">{{item.title}} <a @click.prevent="removeItem(index)" href="#" class="">(Remove)</a></span>
+          <span class="item-price float-right">${{item.price}}</span>
+        </li>
+      <hr>
+    </ul>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <span class="item-name">Total</span>
+        <span class="item-price float-right">${{ totalPrice }}</span>
+      </li>
 
-    <li class="list-group-item">
-      <span class="item-name">Total</span>
-      <span class="item-price float-right">${{ totalPrice }}</span>
-    </li>
-
-    <li v-if="items.length > 0" class="list-group-item">
-      <button @click="checkout" class="btn btn-block btn-success">Checkout</button>
-    </li>
-  </ul>
+      <li v-if="items.length > 0" class="list-group-item">
+        <button @click="checkout" class="btn btn-block btn-success">Checkout</button>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -52,5 +58,13 @@ export default {
 </script>
 
 <style>
-
+.cartbar{
+    position: fixed;
+    right: 26px;
+    height: 80%;
+}
+.cartbar ul:nth-child(2){
+  overflow-y: auto;
+  height: 60%;
+}
 </style>
