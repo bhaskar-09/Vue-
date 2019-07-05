@@ -1,68 +1,61 @@
 <template>
   <div id="app">
-    <Navbar @search="search"></Navbar>
-    <router-view></router-view>
-     <div class="container-fluid">
+    
+    <navbar @search="search"></navbar>
+
+    <div class="container">
       <div class="row">
-        <div class="col-sm-9">           
-          <Inventory @newItemAdd="addToCart" :items="items"></Inventory>
-        </div>        
-        <div class="col-sm-3 cartbar hiiii"> 
-          <Cart @removeItem="removeItemCart" :items="carts"></Cart>
+        <div class="col-sm-9">
+          <router-view></router-view>
+        </div>
+        <div class="col-sm-3">
+          <cart @itemRemoved="removeItem" :items="cart"></cart>
         </div>
       </div>
     </div>
-
-
-
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar"
-import Inventory from "./components/Inventory"
-import Cart from "./components/Cart"
-import data from "./data"
+import Navbar from './components/Navbar'
+import Cart from './components/Cart'
+import data from './data.js'
+
 export default {
   components: {
     Navbar,
-    Inventory,
     Cart
   },
-  data(){
-    return{
-      items : [],
-      carts : []
+  data() {
+    return {
+      items: [],
+      cart: []
     }
   },
-  mounted(){
-    this.items = data;
+  mounted() {
+    this.items = data
   },
   methods: {
-    search(keyword){
-      if(keyword.length>0){
-        this.items =  data.filter(
-          item => {          
-              return item.tittle.toLowerCase().indexOf(keyword.toLowerCase()) !== -1          
-          }
-        )
-      }else{
-        this.items =  data
-      }      
+    search(keyword) {
+      this.items = data.filter(item => {
+        return item.title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
+      })
     },
-    addToCart(item){
-      this.carts.push(item);
+    addCartItem(item) {
+      this.cart.push(item)
     },
-    removeItemCart(index){
-      this.carts.splice(index,1);
+    removeItem(index) {
+      this.cart.splice(index, 1)
     }
   }
 }
 </script>
 
 <style>
-
-.container-fluid{
-  padding-top: 20px;
+.container {
+  padding-top: 10px; 
+}
+.card {
+  margin: 2px;
 }
 </style>

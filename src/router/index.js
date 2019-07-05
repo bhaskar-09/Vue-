@@ -1,8 +1,15 @@
-import Hello from "../components/Hello"
+import ItemDetails from '../components/views/ItemDetails'
+import Test from '../components/views/Test'
+import Inventory from '../components/views/Inventory'
+
 
 export const routes = [
-    {
-        path:"/hello",
-        component: Hello
-    }
+  {
+    path: '',
+    component: Inventory
+  },
+  {
+    path: '/item/:id',
+    component: ItemDetails
+  }
 ]
