@@ -1,40 +1,34 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">My Store</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-            <router-link :to="{path:'/'}" class="nav-link" >Home</router-link>
-            </li>
-            <li class="nav-item">
-            <router-link :to="{path:'/'}" class="nav-link" >Features</router-link>
-            </li>
-            <li class="nav-item">
-            <router-link :to="{path:'/ProductDetails/1'}" class="nav-link">Pricing</router-link>
-            </li>
-        </ul>
-         <div class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" @keyup="search()" v-model="keyword" type="search" placeholder="Search" aria-label="Search">
-        </div>
-        </div>
-    </nav>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <router-link class="navbar-brand" :to="{ path:'/'}">Super Store</router-link>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" @keyup="search()" type="search" placeholder="Search" aria-label="Search" v-model="keyword">
+  </div>
+  </nav>
+
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    data(){
-        return {
-            keyword : ""
-        }
-    },
-    methods:{
-        search(){
-            this.$emit('search',this.keyword)
-        }
+  data() {
+    return {
+      keyword: ''
     }
+  },
+  methods: {
+    search(){
+      var self = this
+      axios.get('http://localhost:3000/search/' + this.keyword).then(response => {
+        self.$store.commit('setInventory', response.data)
+      })
+    }
+  }
 }
 </script>
 
