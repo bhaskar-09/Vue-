@@ -8,7 +8,7 @@
         <div class="col-sm-9">
           <router-view></router-view>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3 hello">
           <cart :items="cart"></cart>
         </div>
       </div>
