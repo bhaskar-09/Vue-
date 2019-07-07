@@ -8,7 +8,7 @@
       <p>{{ item.description }}</p>
       <h4 class="text-center">${{ item.price }}</h4>
       <div class="card-footer">
-        <button @click="addToCart(item)" class="btn btn-block btn-success">
+        <button @click="addToCart(item)" class="btn btn-block btn-success" :disabled="cartKey.indexOf(item.id) !== -1">
          Add To Cart
         </button>
       </div>
@@ -27,6 +27,11 @@ export default {
   },
   mounted() {
     this.fetchItem()
+  },
+  computed: {
+    cartKey() {
+      return this.$store.getters.getCartKey
+    }
   },
   methods: {
     fetchItem() {
